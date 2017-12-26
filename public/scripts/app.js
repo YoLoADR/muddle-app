@@ -8,227 +8,93 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var MuddleApp = function (_React$Component) {
-  _inherits(MuddleApp, _React$Component);
+var ItVisible = function (_React$Component) {
+    _inherits(ItVisible, _React$Component);
 
-  function MuddleApp() {
-    _classCallCheck(this, MuddleApp);
+    function ItVisible(props) {
+        _classCallCheck(this, ItVisible);
 
-    return _possibleConstructorReturn(this, (MuddleApp.__proto__ || Object.getPrototypeOf(MuddleApp)).apply(this, arguments));
-  }
+        // let para = (this.state.bool) ? <p>Je suis un paragraphe</p> : null;
+        // let textButton = (this.state.onClickbool) ? <p>Hide</p> : <p>Show</p>;
+        var _this = _possibleConstructorReturn(this, (ItVisible.__proto__ || Object.getPrototypeOf(ItVisible)).call(this, props));
 
-  _createClass(MuddleApp, [{
-    key: "render",
-    value: function render() {
-      var title = "MuddleApp Title";
-      var paragraphe = "Je suis un composant réutilisable!";
-      var app = {
-        title: 'Indecision App',
-        subtitle: 'Put your life in the hands of a computer',
-        options: ['things One', 'things Two', 'things Tree', 'things four']
-      };
-      return React.createElement(
-        "div",
-        null,
-        React.createElement(
-          "div",
-          { className: "container" },
-          React.createElement(Header, { title: title, paragraphe: paragraphe }),
-          React.createElement(Action, null),
-          React.createElement(Options, { app: app })
-        )
-      );
+        _this.switchTitle = _this.switchTitle.bind(_this);
+        _this.state = {
+            bool: false,
+            title: "Title",
+            onClickbool: false
+        };
+        return _this;
     }
-  }]);
 
-  return MuddleApp;
-}(React.Component);
-
-var Header = function (_React$Component2) {
-  _inherits(Header, _React$Component2);
-
-  function Header() {
-    _classCallCheck(this, Header);
-
-    return _possibleConstructorReturn(this, (Header.__proto__ || Object.getPrototypeOf(Header)).apply(this, arguments));
-  }
-
-  _createClass(Header, [{
-    key: "render",
-    value: function render() {
-      return React.createElement(
-        "div",
-        null,
-        React.createElement(
-          "h1",
-          null,
-          this.props.title
-        ),
-        React.createElement(
-          "p",
-          null,
-          this.props.paragraphe
-        )
-      );
-    }
-  }]);
-
-  return Header;
-}(React.Component);
-
-var Action = function (_React$Component3) {
-  _inherits(Action, _React$Component3);
-
-  function Action() {
-    _classCallCheck(this, Action);
-
-    return _possibleConstructorReturn(this, (Action.__proto__ || Object.getPrototypeOf(Action)).apply(this, arguments));
-  }
-
-  _createClass(Action, [{
-    key: "render",
-    value: function render() {
-      return React.createElement(
-        "div",
-        null,
-        React.createElement(
-          "div",
-          { className: "alert alert-danger", role: "alert" },
-          "This is a danger alert\u2014check it out!"
-        )
-      );
-    }
-  }]);
-
-  return Action;
-}(React.Component);
-
-var Options = function (_React$Component4) {
-  _inherits(Options, _React$Component4);
-
-  function Options() {
-    _classCallCheck(this, Options);
-
-    return _possibleConstructorReturn(this, (Options.__proto__ || Object.getPrototypeOf(Options)).apply(this, arguments));
-  }
-
-  _createClass(Options, [{
-    key: "onMakeDescision",
-    value: function onMakeDescision() {
-      alert("Holla");
-    }
-  }, {
-    key: "reset",
-    value: function reset() {
-      console.log("reset ok");
-      var that = this;
-      that.props.app.options = [];
-    }
-  }, {
-    key: "render",
-    value: function render() {
-
-      return React.createElement(
-        "div",
-        null,
-        React.createElement(
-          "h1",
-          null,
-          this.props.app.title
-        ),
-        this.props.app.subtitle && React.createElement(
-          "p",
-          null,
-          this.props.app.subtitle
-        ),
-        React.createElement(
-          "p",
-          null,
-          this.props.app.options.length > 0 ? 'Here are your options' : 'No options'
-        ),
-        React.createElement(
-          "button",
-          { disabled: this.props.app.options.length === 0, onClick: this.onMakeDescision },
-          " What should I do ?"
-        ),
-        React.createElement(
-          "ol",
-          null,
-          this.props.app.options.map(function (option) {
-            return React.createElement(Option, { key: Date.now() * Math.random(), option: option });
-          })
-        ),
-        React.createElement(AddOption, null),
-        React.createElement(
-          "button",
-          { className: "button", onClick: this.reset },
-          "Reset"
-        )
-      );
-    }
-  }]);
-
-  return Options;
-}(React.Component);
-
-var Option = function (_React$Component5) {
-  _inherits(Option, _React$Component5);
-
-  function Option() {
-    _classCallCheck(this, Option);
-
-    return _possibleConstructorReturn(this, (Option.__proto__ || Object.getPrototypeOf(Option)).apply(this, arguments));
-  }
-
-  _createClass(Option, [{
-    key: "render",
-    value: function render() {
-      return React.createElement(
-        "li",
-        null,
-        " ",
-        this.props.option
-      );
-    }
-  }]);
-
-  return Option;
-}(React.Component);
-
-var AddOption = function (_React$Component6) {
-  _inherits(AddOption, _React$Component6);
-
-  function AddOption() {
-    _classCallCheck(this, AddOption);
-
-    return _possibleConstructorReturn(this, (AddOption.__proto__ || Object.getPrototypeOf(AddOption)).apply(this, arguments));
-  }
-
-  _createClass(AddOption, [{
-    key: "render",
-    value: function render() {
-      var onFormSubmit = function onFormSubmit(e) {
-        e.preventDefault();
-        var option = e.target.elements.option.value.trim();
-        if (option) {
-          console.log("option", option);
+    _createClass(ItVisible, [{
+        key: "switchTitle",
+        value: function switchTitle() {
+            this.setState(function (preveState) {
+                return {
+                    bool: preveState.bool ? false : true,
+                    onClickbool: preveState.onClickbool ? false : true
+                };
+            });
         }
-        e.target.elements.option.value = '';
-      };
-      return React.createElement(
-        "form",
-        { onSubmit: onFormSubmit },
-        React.createElement("input", { type: "text", name: "option" }),
-        React.createElement(
-          "button",
-          null,
-          "Add option"
-        )
-      );
-    }
-  }]);
+    }, {
+        key: "render",
+        value: function render() {
+            return React.createElement(
+                "div",
+                null,
+                React.createElement(
+                    "h1",
+                    null,
+                    this.state.title
+                ),
+                React.createElement(
+                    "button",
+                    { onClick: this.switchTitle },
+                    this.state.onClickbool ? React.createElement(
+                        "p",
+                        null,
+                        "Hide"
+                    ) : React.createElement(
+                        "p",
+                        null,
+                        "Show"
+                    )
+                ),
+                this.state.bool ? React.createElement(
+                    "p",
+                    null,
+                    "Je suis un paragraphe"
+                ) : null
+            );
+        }
+    }]);
 
-  return AddOption;
+    return ItVisible;
 }(React.Component);
 
-ReactDOM.render(React.createElement(MuddleApp, null), document.getElementById('app'));
+ReactDOM.render(React.createElement(ItVisible, null), document.getElementById('app'));
+
+// const title = "Title";
+// let bool = false;
+
+// const renderAPP = () => {
+//     let switchTitle = () => {
+//         bool = (bool) ? false : true;
+//         renderAPP();
+//     };
+//     let para = (bool) ? <p>Je suis un paragraphe</p> : null;
+//     let textButton = (bool) ? <p>Hide</p> : <p>Show</p>;
+
+//     const template = (
+//         <div>
+//             <h1>{title}</h1>
+//             <button onClick={switchTitle}>{textButton}</button>
+//             {para}
+//         </div>
+//     );
+
+//     ReactDOM.render(template, document.getElementById('app'));
+// };
+
+// renderAPP();
