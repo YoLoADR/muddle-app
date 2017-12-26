@@ -3,6 +3,7 @@ class MuddleApp extends React.Component {
     super(props);
     this.handleDeleteOptions = this.handleDeleteOptions.bind(this);
     this.handlePick = this.handlePick.bind(this);
+    this.handleAddOption.bind(this);
     this.state = {
       options: ['Thing one', 'Thing two', 'Thing three']
     };
@@ -18,6 +19,11 @@ class MuddleApp extends React.Component {
     const randomNum = Math.floor(Math.random() * this.state.options.length);
     const option = this.state.options[randomNum];
     alert(option);
+    
+  }
+
+  handleAddOption(option){
+    console.log(option);
   }
   render() {
     const title = 'Indecision';
@@ -34,7 +40,7 @@ class MuddleApp extends React.Component {
           options={this.state.options}
           handleDeleteOptions={this.handleDeleteOptions}
         />
-        <AddOption />
+        <AddOption handleAddOption={this.handleAddOption}/>
       </div>
     );
   }
@@ -90,15 +96,21 @@ class Option extends React.Component {
 }
 
 class AddOption extends React.Component {
+  constructor(props){
+    super(props);
+    this.handleAddOption = this.handleAddOption.bind(this);
+  }
+  // (!) Nice trick, a son function tha call his dad with params - Why ? Because it's an event from the son
   handleAddOption(e) {
     e.preventDefault();
 
     const option = e.target.elements.option.value.trim();
 
     if (option) {
-      alert(option);
+      this.props.handleAddOption(option);
     }
   }
+
   render() {
     return (
       <div>
