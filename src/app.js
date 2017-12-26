@@ -9,12 +9,33 @@ class MuddleApp extends React.Component {
       options: []
     };
   }
+
+  componentDidMount() {
+    try {
+      const json = localStorage.getItem('options');
+      const options = JSON.parse(json);
+      if (options) {
+        this.setState(() => ({ options }));
+      }
+    } catch (e) {
+      // If the person enter wrong data (data unvalaible for the JSON method)
+    }
+
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.options.length !== this.state.options.length) {
+      const json = JSON.stringify(this.state.options);
+      localStorage.setItem('options', json);
+    }
+  }
+
   handleDeleteOptions() {
-    this.setState(() => ( {options: []} ));
+    this.setState(() => ({ options: [] }));
   }
   // FILTER LOGIC : If it's not equal, he stay in the array else it's not
   handleDeleteOption(optionToRemove) {
-    this.setState((prevState) => ( {options: prevState.options.filter((option)=> optionToRemove !== option)} ));
+    this.setState((prevState) => ({ options: prevState.options.filter((option) => optionToRemove !== option) }));
   }
   handlePick() {
     const randomNum = Math.floor(Math.random() * this.state.options.length);
@@ -29,7 +50,7 @@ class MuddleApp extends React.Component {
     } else if (this.state.options.indexOf(option) > -1) {
       return 'This option already exist';
     }
-    this.setState((prevState) => ( {options: prevState.options.concat([option])}));
+    this.setState((prevState) => ({ options: prevState.options.concat([option]) }));
   }
   render() {
     const subtitle = 'Put your life in the hands of a computer';
@@ -78,16 +99,17 @@ const Action = function (props) {
   );
 };
 
-const Options = function(props){
+const Options = function (props) {
   return (
     <div>
       <button onClick={props.handleDeleteOptions}>Remove All</button>
+      {props.options.length == 0 && <p>Please add an option to get sarted !</p>}
       {
         props.options.map((option) => <Option
-         key={option}
-         optionText={option}
-         handleDeleteOption={props.handleDeleteOption}
-         />)
+          key={option}
+          optionText={option}
+          handleDeleteOption={props.handleDeleteOption}
+        />)
       }
     </div>
   );
@@ -97,7 +119,7 @@ const Option = function (props) {
   return (
     <div>
       {props.optionText}
-      <button onClick={(e)=>{
+      <button onClick={(e) => {
         props.handleDeleteOption(props.optionText);
       }}>Remove</button>
     </div>
@@ -118,10 +140,11 @@ class AddOption extends React.Component {
 
     const option = e.target.elements.option.value.trim();
     const error = this.props.handleAddOption(option);
-    this.setState(() => ({ error } ));
+    this.setState(() => ({ error }));
 
-
-    e.target.elements.option.value = "";
+    if(!error){
+      e.target.elements.option.value = '';
+    }
   }
 
   render() {
