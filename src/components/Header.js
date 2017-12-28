@@ -9,7 +9,7 @@ const Header = function (props) {
     );
 }
 Header.defaultProps = {
-    title: 'Je suis un titre par default !$$$'
+    title: 'Je suis un titre par default $$$'
 };
 
 export default Header;
