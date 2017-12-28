@@ -2,15 +2,15 @@ import React from 'react';
 
 const Action = function (props) {
     return (
-      <div>
-        <button
-          onClick={props.handlePick}
-          disabled={!props.hasOptions}
-        >
-          What should I do?
+        <div>
+            <button
+                onClick={props.handlePick}
+                disabled={!props.hasOptions}
+            >
+                What should I do?
         </button>
-      </div>
+        </div>
     );
-  };
+};
 
-  export default Action;
+export default Action;

@@ -3,7 +3,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import AddOption from './components/AddOption';
-import Option from './components/Option';
+import Options from './components/Options';
 import Header from './components/Header';
 import Action from './components/Action';
 
@@ -81,23 +81,6 @@ class MuddleApp extends React.Component {
       );
     }
   }
-  
-  const Options = function (props) {
-    return (
-      <div>
-        <button onClick={props.handleDeleteOptions}>Remove All</button>
-        {props.options.length == 0 && <p>Please add an option to get sarted !</p>}
-        {
-          props.options.map((option) => <Option
-            key={option}
-            optionText={option}
-            handleDeleteOption={props.handleDeleteOption}
-          />)
-        }
-      </div>
-    );
-  }
-  
-  
+   
   
 ReactDOM.render(<MuddleApp />, document.getElementById('app'));
