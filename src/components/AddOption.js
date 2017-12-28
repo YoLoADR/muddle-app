@@ -11,7 +11,6 @@ export default class AddOption extends React.Component {
     // (!) Nice trick, a son function that call his dad with params - Why ? Because it's an event from the son
     handleAddOption(e) {
       e.preventDefault();
-  
       const option = e.target.elements.option.value.trim();
       const error = this.props.handleAddOption(option);
       this.setState(() => ({ error }));
