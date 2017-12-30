@@ -9,6 +9,7 @@ const OptionModal = (props) => (
     >
         <h3>I'm your modal title</h3>
         {props.selectedOption && <p>{props.selectedOption}</p>}
+        <button onClick={props.handleClearSelectedOption}>Okay</button>
     </Modal>
 );
 
