@@ -23,7 +23,7 @@ export default class MuddleApp extends React.Component {
     const randomNum = Math.floor(Math.random() * this.state.options.length);
     const option = this.state.options[randomNum];
     //alert(option);
-    this.setState(()=>({selectedOption: option}));
+    this.setState(() => ({ selectedOption: option }));
 
   }
 
@@ -37,7 +37,7 @@ export default class MuddleApp extends React.Component {
   }
 
   handleClearSelectedOption = () => {
-    this.setState(()=>({selectedOption: undefined}));
+    this.setState(() => ({ selectedOption: undefined }));
   }
 
   componentDidMount() {
@@ -66,17 +66,19 @@ export default class MuddleApp extends React.Component {
     return (
       <div>
         <Header subtitle={subtitle} />
-        <Action
-          hasOptions={this.state.options.length > 0}
-          handlePick={this.handlePick}
-        />
-        <Options
-          options={this.state.options}
-          handleDeleteOptions={this.handleDeleteOptions}
-          handleDeleteOption={this.handleDeleteOption}
-        />
-        <AddOption handleAddOption={this.handleAddOption} />
-        <OptionModal selectedOption={this.state.selectedOption} handleClearSelectedOption={this.handleClearSelectedOption}/>
+        <div className="container">
+          <Action
+            hasOptions={this.state.options.length > 0}
+            handlePick={this.handlePick}
+          />
+          <Options
+            options={this.state.options}
+            handleDeleteOptions={this.handleDeleteOptions}
+            handleDeleteOption={this.handleDeleteOption}
+          />
+          <AddOption handleAddOption={this.handleAddOption} />
+        </div>
+        <OptionModal selectedOption={this.state.selectedOption} handleClearSelectedOption={this.handleClearSelectedOption} />
       </div>
     );
   }
